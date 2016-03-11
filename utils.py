@@ -50,7 +50,6 @@ def fetch_emails(browser, box):
     source_url = 'https://webmail.ig.com.br/?_task=mail&_action=viewsource&_uid=%s&_mbox=%s'
 
     for i in range(max_id, 0, -1):
-        print("processing message %s" % str(i))
         browser.get(source_url % (str(i), box))
         content = browser.find_element_by_tag_name('pre').text.encode('utf-8')
         msgid = 'rcmrow' + str(i)
