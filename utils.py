@@ -25,16 +25,20 @@ def get_mailboxes(browser, blacklist=[]):
     mailboxes = [ box for box in mailboxes if box and box.lower() not in blacklist ]
     return mailboxes
 
+def get_id_from_filename(filename):
+    return int(filename.split('.')[0][6:])
+
+
 def fetch_emails(browser, box):
     basedir = os.path.join('backup', box)
     if not os.path.isdir(basedir):
         os.makedirs(basedir)
 
     #get last message id
-    files = sorted(os.listdir(basedir))
-    last_msg = files[-1] if files else None
+    files = sorted(os.listdir(basedir), key=get_id_from_filename)
+    last_msg = files[0] if files else None
     if last_msg:
-        max_id = int(last_msg.split('.')[0][6:]) - 1
+        max_id = get_id_from_filename(last_msg) - 1
         print('Last message found: %s' % last_msg)
         print('starting from %s' % str(max_id))
     else:
