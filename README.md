@@ -43,7 +43,7 @@ optional arguments:
   -p PASSWORD, --passwd PASSWORD
                         Your email password. 
   --ignore IGNORE [IGNORE ...]
-                        Folders to be ignored. Spam, Trash and Drafts are ignored by default
+                        Folders to be ignored (case-insensitive). Spam, Trash and Drafts are ignored by default
 ```
 
 ## License
